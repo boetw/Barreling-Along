@@ -3,9 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+
   <title>Hello Front-End</title>
+  <style type="text/css">
+  	body{
+  		background: #118811;
+  	}
+  </style>
 </head>
 <body>
-  <h1>Hello Front-End</h1>
+  
+  <script type="text/javascript">
+
+var game = new Phaser.Game(600, 900, Phaser.AUTO, 'Game', { preload: preload, create: create, update: update });
+
+function preload() {
+  game.load.image('ground', 'assets/platform.png');
+	game.load.image('star', 'assets/star.png');
+	game.load,image('diamond', 'assets/diamond.png');
+
+}
+
+var fall = diamond;
+
+function create() {
+	//	Enable p2 physics
+	game.physics.startSystem(Phaser.Physics.P2JS);
+
+  //  Make things a bit more bouncey
+  game.physics.p2.defaultRestitution = 0.8;
+
+	//  background
+ 	game.stage.backgroundColor = 'rgb(68, 136, 170)';
+
+  //  Add a sprite
+	sprite = game.add.sprite(400, 800, 'star');
+
+    //  Enable if for physics. This creates a default rectangular body.
+	game.physics.p2.enable(sprite);
+
+    //  Modify a few body properties
+	sprite.body.setZeroDamping();
+	sprite.body.fixedRotation = true;
+
+    cursors = game.input.keyboard.createCursorKeys();
+
+
+
+
+}
+
+function update() {
+
+	sprite.body.setZeroVelocity();
+    if (cursors.left.isDown)
+    {
+    	sprite.body.moveLeft(400);
+    }
+    else if (cursors.right.isDown)
+    {
+    	sprite.body.moveRight(400);
+    }
+
+}
+
+</script>
+
 </body>
 </html>
