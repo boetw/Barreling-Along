@@ -17,7 +17,9 @@ var end;
 var group;
 var speed = 0;
 var counter = 0;
+var score = 0;
 var text;
+var rockGroup
 
 function create() {
 //  Enable ARCADE physics
@@ -28,8 +30,7 @@ game.world.enableBody = true;
 game.physics.arcade.gravity.y = 300;
 //  background
 game.stage.backgroundColor = 'rgb(68, 136, 170)';
-group = game.add.physicsGroup();
-//  The hero!
+rockGroup = game.add.group()//  The hero!
 star = game.add.sprite(200, 800, 'star');
 game.physics.enable(star, Phaser.Physics.ARCADE);
 
@@ -54,9 +55,9 @@ function accelerate() {
 function createRock() {
 rock = game.add.sprite(game.world.randomX, 0, 'diamond');
 game.physics.arcade.enable(rock);
-game.add.physicsGroup(rock, group)
+rockGroup.add(rock)
 rock.body.collideWorldBounds = true;
-
+score += 5;
 console.log("rock");
 }
 
@@ -80,8 +81,9 @@ star.body.velocity.x = -200;
 } else if (cursors.right.isDown) {
 star.body.velocity.x = 200;
 }
+
 // //  Run collision
-game.physics.arcade.overlap(star, rock, collisionHandler, null, this);
+game.physics.arcade.overlap(star, rockGroup, collisionHandler, null, this);
 // game.physics.arcade.collide(rock, end, rockHitsBottom, null, this);
 }
 
@@ -92,8 +94,9 @@ game.debug.body(rock.children[i]);
 }
 
 function collisionHandler(star, rock) {
-dead.kill();
-console.log("death");
+star.kill();
+alert("You died! "+"SCORE: "+score);
+game.time.events.stop();
 }
 
 function rockHitsBottom(killer, end) {
