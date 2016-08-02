@@ -1,129 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="js/phaser.min.js"></script>
-
-  <title>Hello Front-End</title>
-  <style type="text/css">
-  	body{
-  		background: #118811;
-  	}
-  </style>
-</head>
-<body>
-  
-  <script type="text/javascript">
-
-var game = new Phaser.Game(400, 900, Phaser.AUTO, 'Game', { preload: preload, create: create, update: update });
-
-function preload() {
-  game.load.image('ground', 'assets/platform.png');
-	game.load.image('star', 'assets/star.png');
-	game.load.image('diamond', 'assets/diamond.png');
-	game.load.image('end', 'assets/end.png');
-
-}
-var sprite;
-var rock;
-var end;
-
-function create() {
-	//	Enable p2 physics
-	game.physics.startSystem(Phaser.Physics.P2JS);
-
-	// Gravity
-	game.physics.p2.gravity.y = 300;
-
-	// Impact events
-	game.physics.p2.setImpactEvents(true);
-
-  //  Make things a bit more bouncey
-  game.physics.p2.defaultRestitution = 0.2;
-
-  //  Create our collision groups. One for the player, one for the rocks
-  var playerCollisionGroup = game.physics.p2.createCollisionGroup();
-  var rockCollisionGroup = game.physics.p2.createCollisionGroup();
-
-	//  background
- 	game.stage.backgroundColor = 'rgb(68, 136, 170)';
-
-  //  Add a sprite
-	sprite = game.add.sprite(400, 800, 'star');
-
-
-
-    //  Enable if for physics. This creates a default rectangular body.
-	game.physics.p2.enable(sprite);
-
-    //  Modify a few body properties
-    sprite.body.setCircle(16);
-	sprite.body.setZeroDamping();
-	sprite.body.fixedRotation = true;
-	sprite.body.data.gravityScale = 0;
-	sprite.body.setCircle(28);
-	game.physics.p2.enable(sprite, true);
-
-    cursors = game.input.keyboard.createCursorKeys();
-
-
-    game.time.events.repeat(Phaser.Timer.SECOND * 0.5, 110, createRock, this);
-    game.time.events.repeat(Phaser.Timer.SECOND * 200, 1, createEnd, this);
-		// game.physics.p2.collide(rock, sprite, rockHitStar, null, this);
-
-
-}
-
-
-function createRock() {
-
-    //  Random object
-
-    var rock = game.add.sprite(game.world.randomX, 0, 'diamond');
-    game.physics.p2.enable(rock);
-    rock.body.setCircle(16);
-
-    rock.body.collides(sprite);
-    rock.body.data.gravityScale = 1;
-
-}
-
-rock.body.onBeginContact.add(rockHitStar, this);
-
-function rockHitStar (_rock, _sprite) {
-		if(_sprite.name !== "sprite"){
-    _rock.kill();
-  }
-}
-
-function createEnd() {
-
-    //  Random object
-
-    var end = game.add.sprite(200, 0, 'end');
-    game.physics.p2.enable(end);
-
-    end.body.collideWorldBounds = true;
-    end.body.data.gravityScale = 1;
-
-}
-
-function update() {
-
-	sprite.body.setZeroVelocity();
-    if (cursors.left.isDown)
-    {
-    	sprite.body.moveLeft(400);
-    }
-    else if (cursors.right.isDown)
-    {
-    	sprite.body.moveRight(400);
-    }
-
-}
-
-</script>
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+		<script type="text/javascript" src="js/gameScript.js"></script>
+		<title>Hello Front-End</title>
+		<style type="text/css">
+			body{
+				background: #118811;
+				margin: o auto;
+			}
+		</style>
+	</head>
+	<body>
+		
+	</body>
 </html>
