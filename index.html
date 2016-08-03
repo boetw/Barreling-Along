@@ -3,19 +3,87 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script type="text/javascript" src="js/phaser.min.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
 		<script type="text/javascript" src="js/gameScript.js"></script>
 		<title>Hello Front-End</title>
 		<style type="text/css">
 			body{
-				background: #118811;
-				margin: 0 auto;
-				padding: 100px;
+				background: url(img/forest.png) #118811;
+				margin: 0px 250px 0px 250px;
 			}
-
+			div{
+				border: 1px dotted #994517;
+			}
+			canvas{
+				padding: 0px 250px 0px 250px;
+			}
+			#panel{
+				border: 1px solid #f0b017;
+				height: 600px;
+				width: 300px;
+				position: absolute;
+			left: 50px;
+			top: 50px;
+				float: right;
+				background: #80e5d4;
+			}
+			.player{
+				display: inline-block;
+				width: 100px;
+				margin: 5px 0px 0px 30px;
+				padding-bottom: 25px;
+			}
+			.leader{
+				padding-top: 20px;
+				border-bottom: none;
+			}
+			table{
+				margin: 10px;
+				width: 280px;
+			}
+			p{
+				margin: 0 auto;
+				margin-left: 50px;
+			}
+			th{
+				border-bottom: 1px solid black;
+				width: 90px;
+			}
+			td{
+				text-align: center;
+			}
 		</style>
 	</head>
 	<body>
-		
+		<div id="panel">
+			<table>
+				<tr>
+					<th>Round</th>
+					<td>1</td>
+					<td>2</td>
+				</tr>
+				<tr id="oneScore">
+					<th>Player 1</th>
+				</tr>
+				<tr id="twoScore">
+					<th>Player 2</th>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<th>Total Score</th>
+					<td id='addScore1'>Row 1</td>
+					<td id="addScore2">Row 2</td>
+				</tr>
+				<tr>
+					<th class="leader">Leader: </th>
+					<th class="leader">Player</th>
+					<th class="leader" id='ahead'>2</th>
+				</tr>
+			</table>
+			<input id="button" type="button" value="Start" onclick="resetVar();" />
+		</div>
 	</body>
 </html>
