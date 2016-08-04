@@ -11,14 +11,16 @@ function endTurn() {
 	if (player) {
 		$('#twoScore').append("<li>" + score + "</li>");
 		player2score.push(score);
-		console.log(player2score);
+				$('#turn').html("Turn: Player 1");
+
 		sumScore2();
 	} else {
 		$('#oneScore').append("<li>" + score + "</li>");
 		round++;
 		$('#round').append("<li>" + round + "</li>");
 		player1score.push(score);
-		console.log(player1score);
+				$('#turn').html("Turn: Player 2");
+
 		sumScore1();
 	}
 	leadScore();
