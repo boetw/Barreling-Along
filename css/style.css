@@ -7,7 +7,7 @@ padding: 0px 250px 0px 250px;
 }
 #panel{
 border: 1px solid rgba(0,0,0,0.8);
-height: 600PX;
+height: 650PX;
 width: 300px;
 position: absolute;
 left: 50px;
@@ -96,3 +96,9 @@ width:300px;
 }
 canvas{
 background: url(../img/waterContainer.png);}
+#directions{
+width: 280px;
+padding: 20px;
+color:#000000;
+font-family:arial, helvetica, sans-serif;
+}
