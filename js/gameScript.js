@@ -21,7 +21,7 @@ function restartGame() {
         preload: preload,
         create: create,
         update: update
-    });
+    }, true);
 }
 
 function preload() {
@@ -57,8 +57,8 @@ function create() {
     // Gravity
     game.physics.arcade.gravity.y = 300;
     //  background
-    tilesprite = game.add.tileSprite(0, 0, 400, 1100, 'water');
-    tilesprite.body.allowGravity = false;
+    // tilesprite = game.add.tileSprite(0, 0, 400, 1100, 'water');
+    // tilesprite.body.allowGravity = false;
 
     rockGroup = game.add.group() //  The hero!
     star = game.add.sprite(200, 750, 'star');
@@ -70,12 +70,12 @@ function create() {
     end.alpha = 0.4;
     game.physics.enable(end, Phaser.Physics.ARCADE);
     var style = {
-        font: "20px Arial",
-        fill: "#ff0044",
+        font: "18px Arial",
+        // fill: "#ff0044",
         wordWrap: true,
         wordWrapWidth: end.width,
         align: "center",
-        backgroundColor: "#ffff00"
+        // backgroundColor: "#ffff00"
     };
     text = game.add.text(0, 0, "Get Ready");
     text.anchor.set(0.3);
@@ -131,16 +131,15 @@ function createEnd() {
     end.alpha = 0.4;
     game.physics.arcade.enable(end);
     end.body.collideWorldBounds = false;
-
     counter++;
     speedUp += 25;
     var style = {
         font: "20px Arial",
-        fill: "#ff0044",
+        // fill: "#ff0044",
         wordWrap: true,
         wordWrapWidth: end.width,
         align: "center",
-        backgroundColor: "#ffff00"
+        // backgroundColor: "#ffff00"
     };
     text = game.add.text(0, 0, "Level " + counter, style);
 
@@ -182,10 +181,11 @@ function collisionHandler(star, rock) {
     star.kill();
     game.time.events.stop();
     continueGame = false;
-    stateText.text = "Your barrel broke! \n You made it\n" + score + " meters.";
+    stateText.text = game.add.text(100, 00, "You made it\n"+score+" meters.", {
+        font: "40px Arial", fill: "#000000", align: "center" });
+    stateText.body.velocity.y= -300;
     stateText.visible = true;
     player = !player;
-    round++;
     endTurn();
     // actionOnClick
 }
