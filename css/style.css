@@ -102,3 +102,10 @@ padding: 20px;
 color:#000000;
 font-family:arial, helvetica, sans-serif;
 }
+#gameWrap{
+	width: 905px;
+	height: 1005px;
+	background: url(../img/waterContainer.png);
+	float: right;
+
+}

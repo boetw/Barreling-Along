@@ -88,7 +88,7 @@ function create() {
     game.time.events.repeat(Phaser.Timer.SECOND * 12, 20, accelerate, this);
     game.time.events.repeat(Phaser.Timer.SECOND * 12, 220, winner, this);
     game.time.events.repeat(Phaser.Timer.SECOND * 12 + 5000, 20, createEnd, this);
-    // game.time.events.repeat(Phaser.Timer.SECOND * 84, victor, this);
+    // game.time.events.loop(Phaser.Timer.QUARTER - 200, wallLeft, this);
     game.time.events.repeat(Phaser.Timer.SECOND * 3, 1, createRock, this);
     game.time.events.repeat(Phaser.Timer.SECOND * 3, 1, createEnd, this);
 
@@ -110,6 +110,10 @@ function create() {
 function accelerate() {
     speed++;
 }
+
+function speedy() {
+    setTimeout(createRock, 250 - speedUp);
+}
 //rock
 function createRock() {
     if (continueGame === true) {
@@ -120,10 +124,6 @@ function createRock() {
         score += 1;
         speedy();
     }
-}
-
-function speedy() {
-    setTimeout(createRock, 250 - speedUp);
 }
 //level marker
 function createEnd() {
@@ -189,7 +189,12 @@ function collisionHandler(star, rock) {
     endTurn();
     // actionOnClick
 }
-
+function wallLeft() {
+    rock = game.add.sprite(0, -1, 'diamond');
+        game.physics.arcade.enable(rock);
+        rockGroup.add(rock)
+        rock.body.collideWorldBounds = false;
+}
 // function actionOnClick() {
 //     this.game.state.start("the_state_name");
 // }

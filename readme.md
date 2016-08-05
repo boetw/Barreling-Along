@@ -1,4 +1,4 @@
-#TEMPLATE JS
+#BARELLING ALONG
 
 A Front-End template setup with BrowserSync, ESLint, and CSSLint.
 
