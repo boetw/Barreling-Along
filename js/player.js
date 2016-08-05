@@ -11,7 +11,7 @@ function endTurn() {
 	if (player) {
 		$('#twoScore').append("<li>" + score + "</li>");
 		player2score.push(score);
-				$('#turn').html("Turn: Player 1");
+		$('#turn').html("Turn: Player 1");
 
 		sumScore2();
 	} else {
@@ -19,7 +19,7 @@ function endTurn() {
 		round++;
 		$('#round').append("<li>" + round + "</li>");
 		player1score.push(score);
-				$('#turn').html("Turn: Player 2");
+		$('#turn').html("Turn: Player 2");
 
 		sumScore1();
 	}
