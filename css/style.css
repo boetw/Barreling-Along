@@ -108,3 +108,13 @@ font-family:arial, helvetica, sans-serif;
 	background: url(../img/waterContainer.png);
 
 }
+#beard{
+	float: right;
+	position: absolute;
+	top: 0px;
+	right: 0px
+}
+#logo{
+	width: 600px;
+		float: right;
+}
