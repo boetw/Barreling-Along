@@ -56,11 +56,8 @@ function create() {
     game.world.enableBody = true;
     // Gravity
     game.physics.arcade.gravity.y = 300;
-    //  background
-    // tilesprite = game.add.tileSprite(0, 0, 400, 1100, 'water');
-    // tilesprite.body.allowGravity = false;
-
-    rockGroup = game.add.group() //  The hero!
+    // Spites
+    rockGroup = game.add.group()
     star = game.add.sprite(200, 750, 'star');
     game.physics.enable(star, Phaser.Physics.ARCADE);
     star.body.allowGravity = false;
@@ -71,19 +68,14 @@ function create() {
     game.physics.enable(end, Phaser.Physics.ARCADE);
     var style = {
         font: "18px Arial",
-        // fill: "#ff0044",
         wordWrap: true,
         wordWrapWidth: end.width,
         align: "center",
-        // backgroundColor: "#ffff00"
     };
     text = game.add.text(0, 0, "Get Ready");
     text.anchor.set(0.3);
     //cursors
     cursors = game.input.keyboard.createCursorKeys();
-    //start
-    // game.paused = true;
-    // button = game.add.button(game.world.centerX - 50, 400, 'button', actionOnClick, this, 2, 1, 0);
     //timers
     game.time.events.repeat(Phaser.Timer.SECOND * 12, 20, accelerate, this);
     game.time.events.repeat(Phaser.Timer.SECOND * 12, 220, winner, this);
@@ -100,12 +92,6 @@ function create() {
     stateText.anchor.setTo(0.5, 0.5);
     stateText.visible = false;
 }
-// function actionOnClick() {
-
-//         console.log("START");
-//         game.paused = false;
-//         button.destroy();
-// }
 //faster
 function accelerate() {
     speed++;
@@ -135,16 +121,11 @@ function createEnd() {
     speedUp += 25;
     var style = {
         font: "20px Arial",
-        // fill: "#ff0044",
         wordWrap: true,
         wordWrapWidth: end.width,
         align: "center",
-        // backgroundColor: "#ffff00"
     };
     text = game.add.text(0, 0, "Level " + counter, style);
-
-
-    // text.anchor.set(0.3);
 }
 //finish
 function winner() {
@@ -181,20 +162,21 @@ function collisionHandler(star, rock) {
     star.kill();
     game.time.events.stop();
     continueGame = false;
-    stateText.text = game.add.text(100, 00, "You made it\n"+score+" meters.", {
-        font: "40px Arial", fill: "#000000", align: "center" });
-    stateText.body.velocity.y= -300;
+    stateText.text = game.add.text(100, 00, "You made it\n" + score + " meters.", {
+        font: "40px Arial",
+        fill: "#000000",
+        align: "center"
+    });
+    stateText.body.velocity.y = -300;
     stateText.visible = true;
     player = !player;
     endTurn();
     // actionOnClick
 }
+
 function wallLeft() {
     rock = game.add.sprite(0, -1, 'diamond');
-        game.physics.arcade.enable(rock);
-        rockGroup.add(rock)
-        rock.body.collideWorldBounds = false;
+    game.physics.arcade.enable(rock);
+    rockGroup.add(rock)
+    rock.body.collideWorldBounds = false;
 }
-// function actionOnClick() {
-//     this.game.state.start("the_state_name");
-// }
